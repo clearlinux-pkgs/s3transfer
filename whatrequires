@@ -1,0 +1,3 @@
+# This file contains recursive sources that require this package
+awscli-0:1.11.147-56.src
+boto3-0:1.4.7-7.src
