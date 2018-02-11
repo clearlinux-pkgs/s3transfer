@@ -4,13 +4,12 @@
 #
 Name     : s3transfer
 Version  : 0.1.12
-Release  : 10
+Release  : 11
 URL      : https://pypi.debian.net/s3transfer/s3transfer-0.1.12.tar.gz
 Source0  : https://pypi.debian.net/s3transfer/s3transfer-0.1.12.tar.gz
 Summary  : An Amazon S3 Transfer Manager
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: s3transfer-legacypython
 Requires: s3transfer-python3
 Requires: s3transfer-python
 Requires: botocore
@@ -27,19 +26,9 @@ s3transfer - An Amazon S3 Transfer Manager for Python
         
         S3transfer is a Python library for managing Amazon S3 transfers.
 
-%package legacypython
-Summary: legacypython components for the s3transfer package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the s3transfer package.
-
-
 %package python
 Summary: python components for the s3transfer package.
 Group: Default
-Requires: s3transfer-legacypython
 Requires: s3transfer-python3
 
 %description python
@@ -63,25 +52,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1512586241
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1518378962
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1512586241
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
