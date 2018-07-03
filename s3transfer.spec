@@ -4,7 +4,7 @@
 #
 Name     : s3transfer
 Version  : 0.1.13
-Release  : 18
+Release  : 19
 URL      : https://pypi.debian.net/s3transfer/s3transfer-0.1.13.tar.gz
 Source0  : https://pypi.debian.net/s3transfer/s3transfer-0.1.13.tar.gz
 Summary  : An Amazon S3 Transfer Manager
