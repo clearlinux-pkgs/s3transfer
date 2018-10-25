@@ -4,21 +4,19 @@
 #
 Name     : s3transfer
 Version  : 0.1.13
-Release  : 20
+Release  : 21
 URL      : https://pypi.debian.net/s3transfer/s3transfer-0.1.13.tar.gz
 Source0  : https://pypi.debian.net/s3transfer/s3transfer-0.1.13.tar.gz
 Summary  : An Amazon S3 Transfer Manager
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: s3transfer-python3
-Requires: s3transfer-python
+Requires: s3transfer-license = %{version}-%{release}
+Requires: s3transfer-python = %{version}-%{release}
+Requires: s3transfer-python3 = %{version}-%{release}
 Requires: botocore
 Requires: futures
-BuildRequires : pbr
-BuildRequires : pip
-
-BuildRequires : python3-dev
-BuildRequires : setuptools
+BuildRequires : buildreq-distutils23
+BuildRequires : buildreq-distutils3
 
 %description
 s3transfer - An Amazon S3 Transfer Manager for Python
@@ -26,10 +24,27 @@ s3transfer - An Amazon S3 Transfer Manager for Python
         
         S3transfer is a Python library for managing Amazon S3 transfers.
 
+%package legacypython
+Summary: legacypython components for the s3transfer package.
+Group: Default
+Requires: python-core
+
+%description legacypython
+legacypython components for the s3transfer package.
+
+
+%package license
+Summary: license components for the s3transfer package.
+Group: Default
+
+%description license
+license components for the s3transfer package.
+
+
 %package python
 Summary: python components for the s3transfer package.
 Group: Default
-Requires: s3transfer-python3
+Requires: s3transfer-python3 = %{version}-%{release}
 
 %description python
 python components for the s3transfer package.
@@ -52,18 +67,31 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518710061
+export SOURCE_DATE_EPOCH=1540431039
+python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
+export SOURCE_DATE_EPOCH=1540431039
 rm -rf %{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/s3transfer
+cp LICENSE.txt %{buildroot}/usr/share/package-licenses/s3transfer/LICENSE.txt
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files legacypython
+%defattr(-,root,root,-)
+/usr/lib/python2*/*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/s3transfer/LICENSE.txt
 
 %files python
 %defattr(-,root,root,-)
