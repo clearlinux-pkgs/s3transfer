@@ -4,7 +4,7 @@
 #
 Name     : s3transfer
 Version  : 0.2.0
-Release  : 24
+Release  : 25
 URL      : https://files.pythonhosted.org/packages/43/22/37b9aaf3969628a25b3b921612139ebc5b8dc26cabb9873c356e1ad2ce2e/s3transfer-0.2.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/43/22/37b9aaf3969628a25b3b921612139ebc5b8dc26cabb9873c356e1ad2ce2e/s3transfer-0.2.0.tar.gz
 Summary  : An Amazon S3 Transfer Manager
@@ -15,22 +15,12 @@ Requires: s3transfer-python = %{version}-%{release}
 Requires: s3transfer-python3 = %{version}-%{release}
 Requires: botocore
 Requires: futures
-BuildRequires : buildreq-distutils23
 BuildRequires : buildreq-distutils3
 
 %description
 =====================================================
 s3transfer - An Amazon S3 Transfer Manager for Python
 =====================================================
-
-%package legacypython
-Summary: legacypython components for the s3transfer package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the s3transfer package.
-
 
 %package license
 Summary: license components for the s3transfer package.
@@ -66,27 +56,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549511560
-python2 setup.py build -b py2
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1554327907
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
-export SOURCE_DATE_EPOCH=1549511560
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/s3transfer
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/s3transfer/LICENSE.txt
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files license
 %defattr(0644,root,root,0755)
