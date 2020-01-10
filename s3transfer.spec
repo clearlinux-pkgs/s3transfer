@@ -4,7 +4,7 @@
 #
 Name     : s3transfer
 Version  : 0.3.0
-Release  : 33
+Release  : 34
 URL      : https://files.pythonhosted.org/packages/43/bf/5a0117a8e848aebc8a0cb1f2f62c016ff8eec481568ba6714c48e23a01c1/s3transfer-0.3.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/43/bf/5a0117a8e848aebc8a0cb1f2f62c016ff8eec481568ba6714c48e23a01c1/s3transfer-0.3.0.tar.gz
 Summary  : An Amazon S3 Transfer Manager
@@ -18,10 +18,9 @@ BuildRequires : botocore
 BuildRequires : buildreq-distutils3
 
 %description
+=====================================================
 s3transfer - An Amazon S3 Transfer Manager for Python
-        =====================================================
-        
-        S3transfer is a Python library for managing Amazon S3 transfers.
+=====================================================
 
 %package license
 Summary: license components for the s3transfer package.
@@ -58,7 +57,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578696061
+export SOURCE_DATE_EPOCH=1578696710
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
