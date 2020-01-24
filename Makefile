@@ -1,5 +1,5 @@
 PKG_NAME := s3transfer
-URL = https://files.pythonhosted.org/packages/b2/45/5f8817a68b5128f9c9ee2259412de4fccf0dbce4220bf9ba703285232231/s3transfer-0.3.1.tar.gz
+URL = https://files.pythonhosted.org/packages/63/1b/541c480e6ace294537cf33786363e4dc54823c6f0b25bf03c1685c00218f/s3transfer-0.3.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
