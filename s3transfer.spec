@@ -4,7 +4,7 @@
 #
 Name     : s3transfer
 Version  : 0.3.3
-Release  : 40
+Release  : 41
 URL      : https://files.pythonhosted.org/packages/50/de/2b688c062107942486c81a739383b1432a72717d9a85a6a1a692f003c70c/s3transfer-0.3.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/50/de/2b688c062107942486c81a739383b1432a72717d9a85a6a1a692f003c70c/s3transfer-0.3.3.tar.gz
 Summary  : An Amazon S3 Transfer Manager
@@ -18,18 +18,10 @@ BuildRequires : botocore
 BuildRequires : buildreq-distutils3
 
 %description
-=====================================================
 s3transfer - An Amazon S3 Transfer Manager for Python
-=====================================================
-
-S3transfer is a Python library for managing Amazon S3 transfers.
-
-.. note::
-
-  This project is not currently GA. If you are planning to use this code in
-  production, make sure to lock to a minor version as interfaces may break
-  from minor version to minor version. For a basic, stable interface of
-  s3transfer, try the interfaces exposed in `boto3 <https://boto3.readthedocs.io/en/latest/guide/s3.html#using-the-transfer-manager>`__
+        =====================================================
+        
+        S3transfer is a Python library for managing Amazon S3 transfers.
 
 %package license
 Summary: license components for the s3transfer package.
@@ -53,6 +45,7 @@ Summary: python3 components for the s3transfer package.
 Group: Default
 Requires: python3-core
 Provides: pypi(s3transfer)
+Requires: pypi(botocore)
 
 %description python3
 python3 components for the s3transfer package.
@@ -67,15 +60,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583221568
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1603403938
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
