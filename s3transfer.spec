@@ -4,7 +4,7 @@
 #
 Name     : s3transfer
 Version  : 0.3.4
-Release  : 45
+Release  : 46
 URL      : https://files.pythonhosted.org/packages/08/e1/3ee2096ebaeeb8c186d20ed16c8faf4a503913e5c9a0e14cd6b8ffc405a3/s3transfer-0.3.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/08/e1/3ee2096ebaeeb8c186d20ed16c8faf4a503913e5c9a0e14cd6b8ffc405a3/s3transfer-0.3.4.tar.gz
 Summary  : An Amazon S3 Transfer Manager
